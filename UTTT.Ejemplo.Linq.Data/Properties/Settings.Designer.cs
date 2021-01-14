@@ -43,5 +43,16 @@ namespace UTTT.Ejemplo.Linq.Data.Properties {
                 return ((string)(this["ManualConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=uttttidsm.database.windows.net;Initial Catalog=Manual;User ID=ivan-ti" +
+            ";Password=i1234....")]
+        public string ManualConnectionString1 {
+            get {
+                return ((string)(this["ManualConnectionString1"]));
+            }
+        }
     }
 }

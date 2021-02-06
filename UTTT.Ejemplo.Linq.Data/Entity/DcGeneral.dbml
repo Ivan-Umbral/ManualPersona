@@ -26,6 +26,11 @@
       <Column Name="strAPaterno" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="strAMaterno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="idCatSexo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Naci" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Codigo_Postal" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Rfc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Num_Hermanos" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Persona_Direccion" Member="Direccion" ThisKey="id" OtherKey="idPersona" Type="Direccion" />
       <Association Name="CatSexo_Persona" Member="CatSexo" ThisKey="idCatSexo" OtherKey="id" Type="CatSexo" IsForeignKey="true" />
     </Type>

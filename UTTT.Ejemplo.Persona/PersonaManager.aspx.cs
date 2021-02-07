@@ -63,22 +63,44 @@ namespace UTTT.Ejemplo.Persona
                     }
                     List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
                     CatSexo catTemp = new CatSexo();
-                    catTemp.id = -1;
-                    catTemp.strValor = "Seleccionar";
-                    lista.Insert(0, catTemp);
-                    this.ddlSexo.DataTextField = "strValor";
-                    this.ddlSexo.DataValueField = "id";
-                    this.ddlSexo.DataSource = lista;
-                    this.ddlSexo.DataBind();
+                    //catTemp.id = -1;
+                    //catTemp.strValor = "Seleccionar";
+                    //lista.Insert(0, catTemp);
+                    //this.ddlSexo.DataTextField = "strValor";
+                    //this.ddlSexo.DataValueField = "id";
+                    //this.ddlSexo.DataSource = lista;
+                    //this.ddlSexo.DataBind();
 
                     this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
                     this.ddlSexo.AutoPostBack = true;
                     if (this.idPersona == 0)
                     {
+                        catTemp.id = -1;
+                        catTemp.strValor = "Seleccionar";
+                        lista.Insert(0, catTemp);
+                        this.ddlSexo.DataTextField = "strValor";
+                        this.ddlSexo.DataValueField = "id";
+                        this.ddlSexo.DataSource = lista;
+                        this.ddlSexo.DataBind();
+
                         this.lblAccion.Text = "Agregar";
+                        DateTime date = new DateTime(2000, 1, 1);
+
+                        this.IdCalendar.TodaysDate = date;
+                        this.IdCalendar.SelectedDate = date;
+
                     }
                     else
                     {
+                        catTemp.id = baseEntity.CatSexo.strValor == "Masculino" ? 1 : 2;
+                        catTemp.strValor = baseEntity.CatSexo.strValor;
+                        lista.Insert(0, catTemp);
+                        this.ddlSexo.DataTextField = "strValor";
+                        this.ddlSexo.DataValueField = "id";
+                        lista.RemoveAt(0);
+                        this.ddlSexo.DataSource = lista;
+                        this.ddlSexo.DataBind();
+
                         this.lblAccion.Text = "Editar";
                         this.txtNombre.Text = this.baseEntity.strNombre;
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
@@ -94,6 +116,11 @@ namespace UTTT.Ejemplo.Persona
                             this.IdCalendar.TodaysDate = (DateTime)fechaNa;
                             this.IdCalendar.SelectedDate = (DateTime)fechaNa;
 
+                        }
+                        else
+                        {
+                            DateTime date = new DateTime(2000, 1, 1);
+                            this.IdCalendar.TodaysDate = date;
                         }
                         this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
                     }                
@@ -112,10 +139,10 @@ namespace UTTT.Ejemplo.Persona
         {
             try
             {
-                //if (!IsValid)
-                //{
-                //    return;
-                //}
+                if (!IsValid)
+                {
+                    return;
+                }
                 DataContext dcGuardar = new DcGeneralDataContext();
                 UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
                 int i = 0;
@@ -198,7 +225,10 @@ namespace UTTT.Ejemplo.Persona
             }
             catch (Exception _e)
             {
-                this.showMessageException(_e.Message);
+                //this.showMessageException(_e.Message);
+                ControlGmail ctrlmail = new ControlGmail();
+                ctrlmail.sendEmail(_e.Message);
+                this.Response.Redirect("~/Error/Error.html", false);
             }
         }
 
@@ -340,24 +370,20 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "El campo Apellido Materno debe contener solo letras.";
                 return false;
             }
+
             
-            //if (_persona.strAMaterno.Equals(String.Empty))
-            //{
-            //    _mensaje = "El campo de apellido paterno es requerido";
-            //    return false;
-            //}
             //Fecha Nacimiento
             if (_persona.Fecha_Naci.ToString().Equals("01/01/0001 12:00:00 a. m."))
             {
                 _mensaje = "El campo fecha de nacimiento es requerido";
                 return false;
             }
-            //var time = DateTime.Now - _persona.Fecha_Naci.Value.Date;
-            //if (time.Days < 6570)
-            //{
-            //    _mensaje = "Debes ser mayor de 18 años";
-            //    return false;
-            //}
+            var time = DateTime.Now - _persona.Fecha_Naci.Value.Date;
+            if (time.Days < 6570)
+            {
+                _mensaje = "Debes ser mayor de 18 años";
+                return false;
+            }
             if (_persona.Num_Hermanos.ToString().Equals(String.Empty))
             {
                 _mensaje = "El campo de numero de hermanos es requerido";

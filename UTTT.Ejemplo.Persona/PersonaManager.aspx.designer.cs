@@ -121,6 +121,15 @@ namespace UTTT.Ejemplo.Persona {
         protected global::System.Web.UI.WebControls.Calendar IdCalendar;
         
         /// <summary>
+        /// Control txtMensageJS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtMensageJS;
+        
+        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>

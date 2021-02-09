@@ -74,8 +74,7 @@
             <asp:Calendar ID="IdCalendar" runat="server"></asp:Calendar>
                 </center>
             <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="txtMensageJS" runat="server"></asp:Label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label1" runat="server" Text="Numero de hermanos:"></asp:Label>
             <asp:TextBox ID="txtNumeroHermanos" runat="server" style="margin-left: 9px "  required="" onkeyup="this.value=Numeros(this.value)"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtNumeroHermanos" EnableClientScript="False" ErrorMessage="Este campo requiere solo numeros" ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
@@ -106,6 +105,9 @@
             <asp:Label ID="txtMensage" runat="server" Text="Label" Visible="False"></asp:Label>
         </div>
     <div> 
+    
+        <asp:Label ID="txtMensageJS" runat="server"></asp:Label>
+            <br />
     
     </div>
     <div>

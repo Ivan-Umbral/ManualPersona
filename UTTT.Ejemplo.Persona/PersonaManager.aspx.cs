@@ -83,11 +83,15 @@ namespace UTTT.Ejemplo.Persona
                         this.ddlSexo.DataSource = lista;
                         this.ddlSexo.DataBind();
 
-                        this.lblAccion.Text = "Agregar";
-                        DateTime date = new DateTime(2000, 1, 1);
+                        //this.lblAccion.Text = "Agregar";
 
+                        this.lblAccion.Text = "Agregar";
+                        DateTime date = new DateTime(2000, 7, 8);
                         this.IdCalendar.TodaysDate = date;
-                        this.IdCalendar.SelectedDate = date;
+
+                        //DateTime date = new DateTime(2000, 1, 1);
+                        //this.IdCalendar.TodaysDate = date;
+                        //this.IdCalendar.SelectedDate = date;
 
                     }
                     else
@@ -106,22 +110,22 @@ namespace UTTT.Ejemplo.Persona
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
                         this.txtAMaterno.Text = this.baseEntity.strAMaterno;
                         this.txtClaveUnica.Text = this.baseEntity.strClaveUnica;
+                        this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
+
                         this.txtNumeroHermanos.Text = this.baseEntity.Num_Hermanos.ToString();
                         this.txtCorreo.Text = this.baseEntity.Correo;
                         this.txtCodigoPostal.Text = this.baseEntity.Codigo_Postal;
                         this.txtRfc.Text = this.baseEntity.Rfc;
                         DateTime? fechaNa = this.baseEntity.Fecha_Naci;
+
                         if (fechaNa != null)
                         {
+                            //this.IdCalendar.TodaysDate = (DateTime)fechaNa;
                             this.IdCalendar.TodaysDate = (DateTime)fechaNa;
                             this.IdCalendar.SelectedDate = (DateTime)fechaNa;
 
                         }
-                        else
-                        {
-                            DateTime date = new DateTime(2000, 1, 1);
-                            this.IdCalendar.TodaysDate = date;
-                        }
+                        
                         this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
                     }                
                 }
@@ -149,11 +153,14 @@ namespace UTTT.Ejemplo.Persona
                 if (this.idPersona == 0)
                 {
                     persona.Fecha_Naci = this.IdCalendar.SelectedDate.Date;
+                    //ControlGmail ctrgmail = new ControlGmail();
+                    //ctrgmail.sendEmail("Edel");
                     persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
                     persona.strNombre = this.txtNombre.Text.Trim();
                     persona.strAMaterno = this.txtAMaterno.Text.Trim();
                     persona.strAPaterno = this.txtAPaterno.Text.Trim();
                     persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                   
                     //persona.Num_Hermanos = int.Parse(this.txtNumeroHermanos.Text);
                     persona.Num_Hermanos = this.txtNumeroHermanos.Text.Trim().Length > 0 ? (int.TryParse(this.txtNumeroHermanos.Text.Trim(), out i) ? int.Parse(this.txtNumeroHermanos.Text.Trim()) : 0) : 0;
                     persona.Correo = this.txtCorreo.Text;
@@ -371,9 +378,9 @@ namespace UTTT.Ejemplo.Persona
                 return false;
             }
 
-            
+
             //Fecha Nacimiento
-            if (_persona.Fecha_Naci.ToString().Equals("01/01/0001 12:00:00 a. m."))
+            if (_persona.Fecha_Naci.ToString().Equals("01/01/0001 12:00:00 a. m.") || _persona.Fecha_Naci.ToString().Equals("1/1/0001 12:00:00 AM"))
             {
                 _mensaje = "El campo fecha de nacimiento es requerido";
                 return false;

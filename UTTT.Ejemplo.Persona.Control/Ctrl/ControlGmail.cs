@@ -16,7 +16,7 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
             {
                 MailMessage mailMessage = new MailMessage();
                 SmtpClient smtpClient = new SmtpClient();
-                mailMessage.From = new MailAddress("ivanumbral19@gmail.com");
+                mailMessage.From = new MailAddress("ivan.bravo.umbral@gmail.com");
                 mailMessage.To.Add(new MailAddress("18300524@uttt.edu.mx"));
                 mailMessage.Subject = "Error / Exception Handling";
                 mailMessage.IsBodyHtml = false;
@@ -25,7 +25,7 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
                 smtpClient.Host = "smtp.gmail.com";
                 smtpClient.EnableSsl = true;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("ivanumbral19@gmail.com", "umbralivan17");
+                smtpClient.Credentials = new NetworkCredential("ivan.bravo.umbral@gmail.com", "umbralivan17");
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.Send(mailMessage);
             }

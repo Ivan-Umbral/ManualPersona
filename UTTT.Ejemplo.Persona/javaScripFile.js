@@ -70,6 +70,16 @@ const rfcRegex = /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-
 
 const mensagecorreo = document.querySelector("#txtCorreo");
 const mensagecorreoo = document.querySelector("#txtMensageJS"); 
+const txtClaveUnica = document.querySelector('#txtClaveUnica');
+//txtClaveUnica.addEventListener("keyup", function () {
+if (txtClaveUnica.value.length !== 3) {
+    erroresArray.push({
+        field: 'Clave Única',
+        message: 'La clave única debe tener una longitud de 3 caracteres.'
+    });
+    return false;
+}
+
 mensagecorreo.addEventListener("keyup", function () {
     if (!emailRegex.test(this.value.toLowerCase())) {
         mensagecorreoo.innerText = "Correo no es valido";

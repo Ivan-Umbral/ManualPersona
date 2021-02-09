@@ -319,11 +319,11 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "La clave única debe ser un número";
                 return false;
             }
-            if (int.Parse(_persona.strClaveUnica) < 100 || int.Parse(_persona.strClaveUnica) > 999)
-            {
-                _mensaje = "La clave unica no contiene rango necesario";
-                return false;
-            }
+            //if (int.Parse(_persona.strClaveUnica) < 100 || int.Parse(_persona.strClaveUnica) > 999)
+            //{
+            //    _mensaje = "La clave unica no contiene rango necesario";
+            //    return false;
+            //}
             if (_persona.strClaveUnica.Length > 3 || _persona.strClaveUnica.Length < 3)
             {
                 _mensaje = "La clave unica debe tener 3 caracteres de longitud";

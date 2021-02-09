@@ -306,6 +306,7 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "El campo de sexo es requerido";
                 return false;
             }
+            //
             //Clave unica
             if (_persona.strClaveUnica.Equals(String.Empty))
             {

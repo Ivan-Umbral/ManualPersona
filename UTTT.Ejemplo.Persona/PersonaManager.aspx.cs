@@ -577,5 +577,10 @@ namespace UTTT.Ejemplo.Persona
                 args.IsValid = false;
             }
         }
+
+        protected void IdCalendar_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

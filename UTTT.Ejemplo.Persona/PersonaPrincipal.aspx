@@ -5,10 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="Content/bootstrap.min.css" rel="Stylesheet" />
+    <script src="Scripts/jquery-1.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="Stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-    
+    <div class="jumbotron text-center">
     <div style="color: #000000; font-size: medium; font-family: Arial; font-weight: bold">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Persona</div>
     <div>
 
@@ -19,10 +23,10 @@
         <asp:TextBox ID="txtNombre" runat="server" Width="174px" 
             ViewStateMode="Disabled"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" 
+        <asp:Button ID="btnBuscar" class="btn btn-info" runat="server" Text="Buscar" 
             onclick="btnBuscar_Click" ViewStateMode="Disabled" />
         &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" 
+        <asp:Button ID="btnAgregar" class="btn btn-primary" runat="server" Text="Agregar" 
             onclick="btnAgregar_Click" ViewStateMode="Disabled" />
     </p>
     </div>
@@ -42,7 +46,7 @@
         
         </div>
        
-        <div>
+        <div class="table table-bordered">
         
              <asp:GridView ID="dgvPersonas" runat="server" 
                 AllowPaging="True" AutoGenerateColumns="False" DataSourceID="DataSourcePersona" 
@@ -105,6 +109,7 @@
         Select="new (strNombre, strAPaterno, strAMaterno, CatSexo, strClaveUnica,id)" 
         TableName="Persona" EntityTypeName="">
     </asp:LinqDataSource>
+        </div>
     </form>
 </body>
 </html>

@@ -13,6 +13,7 @@ using System.Collections;
 using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 #endregion
 
@@ -72,7 +73,12 @@ namespace UTTT.Ejemplo.Persona
                     //this.ddlSexo.DataBind();
 
                     this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
-                    this.ddlSexo.AutoPostBack = true;
+                    this.ddlSexo.AutoPostBack = false;
+
+                    List<Estadocivil> estadosCiviles = dcGlobal.GetTable<Estadocivil>().ToList();
+                    this.IdEstadoCivil.DataTextField = "strValor";
+                    this.IdEstadoCivil.DataValueField = "id";
+
                     if (this.idPersona == 0)
                     {
                         catTemp.id = -1;
@@ -82,6 +88,16 @@ namespace UTTT.Ejemplo.Persona
                         this.ddlSexo.DataValueField = "id";
                         this.ddlSexo.DataSource = lista;
                         this.ddlSexo.DataBind();
+
+                        Estadocivil estadoCivilTemp = new Estadocivil();
+                        estadoCivilTemp.id = -1;
+                        estadoCivilTemp.strValor = "Seleccionar";
+                        estadosCiviles.Insert(0, estadoCivilTemp);
+
+
+
+                        this.IdEstadoCivil.DataSource = estadosCiviles;
+                        this.IdEstadoCivil.DataBind();
 
                         //this.lblAccion.Text = "Agregar";
 
@@ -123,9 +139,24 @@ namespace UTTT.Ejemplo.Persona
                             //this.IdCalendar.TodaysDate = (DateTime)fechaNa;
                             this.IdCalendar.TodaysDate = (DateTime)fechaNa;
                             this.IdCalendar.SelectedDate = (DateTime)fechaNa;
+                            this.IdFecha.Text = fechaNa.Value.Date.ToString("dd/MM/yyyy");
 
                         }
-                        
+                        if (baseEntity.Estadocivil1 == null)
+                        {
+                            Estadocivil ecTemp = new Estadocivil();
+                            ecTemp.id = -1;
+                            ecTemp.strValor = "Seleccionar";
+                            estadosCiviles.Insert(0, ecTemp);
+                        }
+                        this.IdEstadoCivil.DataSource = estadosCiviles;
+                        this.IdEstadoCivil.DataBind();
+                        if (baseEntity.Estadocivil != null)
+                        {
+                            this.setItem(ref this.IdEstadoCivil, baseEntity.Estadocivil1.strValor);
+                        }
+
+
                         this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
                     }                
                 }
@@ -150,9 +181,11 @@ namespace UTTT.Ejemplo.Persona
                 DataContext dcGuardar = new DcGeneralDataContext();
                 UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
                 int i = 0;
+                DateTime dateValue = DateTime.Now;
                 if (this.idPersona == 0)
                 {
-                    persona.Fecha_Naci = this.IdCalendar.SelectedDate.Date;
+                    //persona.Fecha_Naci = this.IdCalendar.SelectedDate.Date;
+                    persona.Fecha_Naci = (!DateTime.TryParseExact(this.IdFecha.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue)) ? (DateTime?)null : dateValue;
                     //ControlGmail ctrgmail = new ControlGmail();
                     //ctrgmail.sendEmail("Edel");
                     persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
@@ -167,6 +200,7 @@ namespace UTTT.Ejemplo.Persona
                     persona.Codigo_Postal = this.txtCodigoPostal.Text;
                     persona.Rfc = this.txtRfc.Text;
                     String mensage = String.Empty;
+                    persona.Estadocivil = int.Parse(this.IdEstadoCivil.Text);
                     if (!this.validacion(persona, ref mensage))
                     {
                         this.txtMensage.Text = mensage;
@@ -195,7 +229,8 @@ namespace UTTT.Ejemplo.Persona
                 if (this.idPersona > 0)
                 {
                     persona = dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == idPersona);
-                    persona.Fecha_Naci = this.IdCalendar.SelectedDate.Date;
+                    //persona.Fecha_Naci = this.IdCalendar.SelectedDate.Date;
+                    persona.Fecha_Naci = (!DateTime.TryParseExact(this.IdFecha.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue)) ? (DateTime?)null : dateValue;
                     persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
                     persona.strNombre = this.txtNombre.Text.Trim();
                     persona.strAMaterno = this.txtAMaterno.Text.Trim();
@@ -207,6 +242,7 @@ namespace UTTT.Ejemplo.Persona
                     persona.Codigo_Postal = this.txtCodigoPostal.Text;
                     persona.Rfc = this.txtRfc.Text;
                     String mensage = String.Empty;
+                    persona.Estadocivil = int.Parse(this.IdEstadoCivil.Text);
                     if (!this.validacion(persona, ref mensage))
                     {
                         this.txtMensage.Text = mensage;
@@ -381,17 +417,42 @@ namespace UTTT.Ejemplo.Persona
 
 
             //Fecha Nacimiento
-            if (_persona.Fecha_Naci.ToString().Equals("01/01/0001 12:00:00 a. m.") || _persona.Fecha_Naci.ToString().Equals("1/1/0001 12:00:00 AM"))
+            if (this.IdFecha.Text.Trim().Equals(String.Empty))
             {
-                _mensaje = "El campo fecha de nacimiento es requerido";
+                _mensaje = "La fecha de nacimiento es requerida.";
                 return false;
             }
+
+
+            if (_persona.Fecha_Naci == null)
+            {
+                _mensaje = "La fecha no es válida.";
+                return false;
+            }
+
+
+
             var time = DateTime.Now - _persona.Fecha_Naci.Value.Date;
             if (time.Days < 6570)
             {
                 _mensaje = "Debes ser mayor de 18 años";
                 return false;
             }
+
+
+            //if (_persona.Fecha_Naci.ToString().Equals("01/01/0001 12:00:00 a. m.") || _persona.Fecha_Naci.ToString().Equals("1/1/0001 12:00:00 AM"))
+            //{
+            //    _mensaje = "El campo fecha de nacimiento es requerido";
+            //    return false;
+            //}
+            //var time = DateTime.Now - _persona.Fecha_Naci.Value.Date;
+            //if (time.Days < 6570)
+            //{
+            //    _mensaje = "Debes ser mayor de 18 años";
+            //    return false;
+            //}
+
+
             if (_persona.Num_Hermanos.ToString().Equals(String.Empty))
             {
                 _mensaje = "El campo de numero de hermanos es requerido";

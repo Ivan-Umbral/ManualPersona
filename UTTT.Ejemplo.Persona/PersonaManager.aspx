@@ -1,20 +1,20 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PersonaManager.aspx.cs" Inherits="UTTT.Ejemplo.Persona.PersonaManager" debug=false%>
 
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
     <!-- CSS only -->
-<!--
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
--->
-    <link href="Content/bootstrap.min.css" rel="Stylesheet" />
-    <script src="Scripts/jquery-1.4.1.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"/>
+
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="jumbotron text-center">
     <div style="font-family: Arial; font-size: medium; font-weight: bold">
     
@@ -79,7 +79,20 @@
             <asp:TextBox ID="txtAMaterno" runat="server" Width="248px" 
                 ViewStateMode="Disabled" onkeypress="return soloLetras(event)" required="" MaxLength="10" ></asp:TextBox>
             <center>
-            <asp:Calendar ID="IdCalendar" runat="server"></asp:Calendar>
+            <asp:Calendar ID="IdCalendar" runat="server" Visible="False"></asp:Calendar>
+                <br />
+                <asp:Label ID="IdErrorCal" runat="server"></asp:Label>
+                <br />
+                <br />
+                
+                <asp:ImageButton ID="BtnFecha" ImageUrl="~/Images/Calendar.png"  AlternateText="No Image available" runat="server" /> 
+
+                <asp:TextBox ID="IdFecha" runat="server"></asp:TextBox>
+                <ajaxToolkit:CalendarExtender ID="IdFecha_CalendarExtender" runat="server" TargetControlID="IdFecha" PopupButtonID="BtnFecha" Format="dd/MM/yyyy" />
+                <br />
+                <br />
+                <asp:DropDownList ID="IdEstadoCivil" runat="server">
+                </asp:DropDownList>
                 </center>
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

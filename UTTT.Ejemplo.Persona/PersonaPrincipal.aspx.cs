@@ -43,6 +43,16 @@ namespace UTTT.Ejemplo.Persona
                     this.ddlSexo.DataValueField = "id";
                     this.ddlSexo.DataSource = lista;
                     this.ddlSexo.DataBind();
+                    ////////////////////////////
+                    List<Estadocivil> estadosCiviles = dcTemp.GetTable<Estadocivil>().ToList();
+                    Estadocivil estadoCivilTemp = new Estadocivil();
+                    estadoCivilTemp.id = -1;
+                    estadoCivilTemp.strValor = "Todos";
+                    estadosCiviles.Insert(0, estadoCivilTemp);
+                    this.IdEstadosCiviles.DataTextField = "strValor";
+                    this.IdEstadosCiviles.DataValueField = "id";
+                    this.IdEstadosCiviles.DataSource = estadosCiviles;
+                    this.IdEstadosCiviles.DataBind();
                 }
             }
             catch (Exception _e)
@@ -87,6 +97,7 @@ namespace UTTT.Ejemplo.Persona
                 DataContext dcConsulta = new DcGeneralDataContext();
                 bool nombreBool = false;
                 bool sexoBool = false;
+                bool estadoCivilBool = false;
                 if (!this.txtNombre.Text.Equals(String.Empty))
                 {
                     nombreBool = true;
@@ -95,11 +106,16 @@ namespace UTTT.Ejemplo.Persona
                 {
                     sexoBool = true;
                 }
+                if (this.IdEstadosCiviles.Text != "-1")
+                {
+                    estadoCivilBool = true;
+                }
 
                 Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Persona, bool>> 
                     predicate =
                     (c =>
-                    ((sexoBool) ? c.idCatSexo == int.Parse(this.ddlSexo.Text) : true) &&             
+                    ((sexoBool) ? c.idCatSexo == int.Parse(this.ddlSexo.Text) : true) &&
+                    ((estadoCivilBool) ? c.Estadocivil == int.Parse(this.IdEstadosCiviles.Text) : true) &&
                     ((nombreBool) ? (((nombreBool) ? c.strNombre.Contains(this.txtNombre.Text.Trim()) : false)) : true)
                     );
 

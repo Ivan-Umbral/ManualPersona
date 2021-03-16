@@ -429,7 +429,7 @@ namespace UTTT.Ejemplo.Persona
                 _mensaje = "La fecha no es válida.";
                 return false;
             }
-
+    
 
 
             var time = DateTime.Now - _persona.Fecha_Naci.Value.Date;
@@ -642,6 +642,19 @@ namespace UTTT.Ejemplo.Persona
         protected void IdCalendar_SelectionChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void CustomValidator3_ServerValidate1(object source, ServerValidateEventArgs args)
+        {
+            int estadoCivil = int.Parse(this.IdEstadoCivil.SelectedValue);
+            if (estadoCivil > 0)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
         }
     }
 }

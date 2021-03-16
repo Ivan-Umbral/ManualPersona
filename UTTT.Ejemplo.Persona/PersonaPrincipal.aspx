@@ -7,52 +7,68 @@
     <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
 </head>
-<body>
+
+<body class="table-responsive">
     <form id="form1" runat="server">
-    <div class="jumbotron text-center">
-    <div style="color: #000000; font-size: medium; font-family: Arial; font-weight: bold">    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    Persona</div>
-    <div>
+    <div class="bg-secondary" align="center" style="color: #000000; font-size: 150%; font-family: Arial; font-weight: bold">Persona</div>
+    
+     <%--   <div>--%>
+        
+        
+        
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
 
-
-    <p>
-        Normbre:&nbsp;&nbsp;&nbsp;
-
-        <asp:TextBox ID="txtNombre" runat="server" Width="174px" 
-            ViewStateMode="Disabled"></asp:TextBox>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnBuscar" class="btn btn-info" runat="server" Text="Buscar" 
-            onclick="btnBuscar_Click" ViewStateMode="Disabled" />
-        &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnAgregar" class="btn btn-primary" runat="server" Text="Agregar" 
+                <asp:UpdatePanel ID="paneltxtName" runat="server">
+                    <ContentTemplate>
+                        <asp:Button style="display:none;" runat="server" OnClick="Unnamed_Click" ID="BtnBus"/>
+        <%--<asp:TextBox ID="txtNombre" runat="server" Width="174px" 
+            ViewStateMode="Disabled" OnTextChanged="txtNombre_TextChanged" AutoPostBack="true"></asp:TextBox>--%>
+                         </ContentTemplate>
+                </asp:UpdatePanel>
+        <div  align="center" style="color: #000000; font-size: 100%; font-family: Arial; font-weight: bold">
+            &nbsp; 
+            <br />
+            Nombre :&nbsp; 
+            <asp:TextBox ID="txtNombre" runat="server" Width="174px" 
+            ViewStateMode="Disabled" AutoPostBack="false"></asp:TextBox>&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnBuscar" class="btn btn-secondary" runat="server" Text="Buscar" 
+            onclick="btnBuscar_Click" ViewStateMode="Disabled" /> &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnAgregar" class="btn btn-dark" runat="server" Text="Agregar" 
             onclick="btnAgregar_Click" ViewStateMode="Disabled" />
-    </p>
-    </div>
-    <div>
-    
-        Sexo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:DropDownList ID="ddlSexo" runat="server" Height="32px" Width="177px">
-        </asp:DropDownList>
-    
-        <br />
-        Estado civil :
-        <asp:DropDownList ID="IdEstadosCiviles" runat="server">
-        </asp:DropDownList>
-    
-    </div>
-    <div style="font-weight: bold">
-    
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Detalle</div>
-
-        <div>
-        
+            <br />
+            <br />
         </div>
-       
-        <div class="table table-bordered">
         
+        <div  align="center" style="color: #000000; font-size: 100%; font-family: Arial; font-weight: bold">Sexo :&nbsp; 
+            <asp:DropDownList ID="ddlSexo" runat="server" Height="32px" Width="177px">
+        </asp:DropDownList>
+          &nbsp  
+            <asp:Label ID="Label1" runat="server" Text="Estado Civil :"></asp:Label>&nbsp
+        <asp:DropDownList ID="IdEstadosCiviles" runat="server">
+        </asp:DropDownList>    
+            <br />
+        </div>
+        <div  align="center" style="color: #000000; font-size: 100%; font-family: Arial; font-weight: bold"> 
+            
+            
+        </div>
+
+        
+    
+    <%--</div>--%>
+    
+    <div style="font-weight: bold" class="mt-3">
+        <h4 class="text-center">Detalle</h4>
+    </div>
+       
+        <div class="table-responsive">
+        
+            <asp:UpdatePanel runat="server" ID="panelGrid">
+                    <ContentTemplate>
+
              <asp:GridView ID="dgvPersonas" runat="server" 
                 AllowPaging="True" AutoGenerateColumns="False" DataSourceID="DataSourcePersona" 
-                Width="1067px" CellPadding="3" GridLines="Horizontal" 
+                Width="1365px" Height="400" CellPadding="4" GridLines="None" 
                 onrowcommand="dgvPersonas_RowCommand" BackColor="White" 
                 BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" 
                 ViewStateMode="Disabled">
@@ -93,9 +109,9 @@
                     
                     </asp:TemplateField>
                 </Columns>
-                <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
-                <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+                <FooterStyle BackColor="#B5C7DE" ForeColor="#34495E" />
+                <HeaderStyle BackColor="#34495E" Font-Bold="True" ForeColor="#F7F7F7" />
+                <PagerStyle BackColor="#E7E7FF" ForeColor="#34495E" HorizontalAlign="Right" />
                 <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
                 <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
                 <SortedAscendingCellStyle BackColor="#F4F4FD" />
@@ -103,6 +119,8 @@
                 <SortedDescendingCellStyle BackColor="#D8D8F0" />
                 <SortedDescendingHeaderStyle BackColor="#3E3277" />
             </asp:GridView>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
         
         </div>
     <asp:LinqDataSource ID="DataSourcePersona" runat="server" 
@@ -111,7 +129,12 @@
         Select="new (strNombre, strAPaterno, strAMaterno, CatSexo, strClaveUnica,id)" 
         TableName="Persona" EntityTypeName="">
     </asp:LinqDataSource>
-        </div>
+        
     </form>
+    <script type="text/javascript">
+        document.querySelector("#txtNombre").addEventListener("keyup",() => {
+            document.querySelector("#BtnBus").click();
+        });
+    </script>
 </body>
 </html>

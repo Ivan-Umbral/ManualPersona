@@ -121,31 +121,13 @@ namespace UTTT.Ejemplo.Persona {
         protected global::System.Web.UI.WebControls.TextBox txtAMaterno;
         
         /// <summary>
-        /// Control IdCalendar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar IdCalendar;
-        
-        /// <summary>
-        /// Control IdErrorCal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label IdErrorCal;
-        
-        /// <summary>
         /// Control BtnFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton BtnFecha;
+        protected global::System.Web.UI.WebControls.Button BtnFecha;
         
         /// <summary>
         /// Control IdFecha.
@@ -166,6 +148,15 @@ namespace UTTT.Ejemplo.Persona {
         protected global::AjaxControlToolkit.CalendarExtender IdFecha_CalendarExtender;
         
         /// <summary>
+        /// Control IdErrorCal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label IdErrorCal;
+        
+        /// <summary>
         /// Control IdEstadoCivil.
         /// </summary>
         /// <remarks>
@@ -175,13 +166,13 @@ namespace UTTT.Ejemplo.Persona {
         protected global::System.Web.UI.WebControls.DropDownList IdEstadoCivil;
         
         /// <summary>
-        /// Control Label1.
+        /// Control CustomValidator3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator3;
         
         /// <summary>
         /// Control txtNumeroHermanos.
@@ -211,15 +202,6 @@ namespace UTTT.Ejemplo.Persona {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// Control Label2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
         /// Control txtCorreo.
         /// </summary>
         /// <remarks>
@@ -245,15 +227,6 @@ namespace UTTT.Ejemplo.Persona {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-        
-        /// <summary>
-        /// Control Label3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// Control txtCodigoPostal.
@@ -292,15 +265,6 @@ namespace UTTT.Ejemplo.Persona {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
         
         /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
         /// Control txtRfc.
         /// </summary>
         /// <remarks>
@@ -337,15 +301,6 @@ namespace UTTT.Ejemplo.Persona {
         protected global::System.Web.UI.WebControls.Label txtMensage;
         
         /// <summary>
-        /// Control txtMensageJS.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtMensageJS;
-        
-        /// <summary>
         /// Control btnAceptar.
         /// </summary>
         /// <remarks>
@@ -362,5 +317,23 @@ namespace UTTT.Ejemplo.Persona {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelar;
+        
+        /// <summary>
+        /// Control IdCalendar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar IdCalendar;
+        
+        /// <summary>
+        /// Control txtMensageJS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtMensageJS;
     }
 }

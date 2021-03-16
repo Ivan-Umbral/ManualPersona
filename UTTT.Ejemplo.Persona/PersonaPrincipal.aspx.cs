@@ -215,5 +215,31 @@ namespace UTTT.Ejemplo.Persona
         }
 
         #endregion
+
+
+        protected void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DataSourcePersona.RaiseViewChanged();
+            }
+            catch (Exception _e)
+            {
+                this.showMessage("Ha ocurrido un problema al buscar");
+            }
+
+        }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DataSourcePersona.RaiseViewChanged();
+            }
+            catch (Exception _e)
+            {
+                this.showMessage("Ha ocurrido un problema al buscar");
+            }
+        }
     }
 }

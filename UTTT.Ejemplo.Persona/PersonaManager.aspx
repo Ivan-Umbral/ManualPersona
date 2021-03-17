@@ -104,7 +104,7 @@
                 <div class="mb-3">
                     <label class="form-label" style="color: #000000; font-size: 100%; font-family: Arial; font-weight: bold">Código Postal :</label>
                     <asp:TextBox ID="txtCodigoPostal" runat="server" MaxLength="5" required="" onkeyup="this.value=Numeros(this.value)" CssClass="form-check-inline"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtCodigoPostal" EnableClientScript="False" ErrorMessage="Format not valid" ValidationExpression="^[0-5][1-9]{3}[0-9]$" ValidationGroup="validForm"></asp:RegularExpressionValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtCodigoPostal" EnableClientScript="False" ErrorMessage="Codigo postal no valido" ValidationExpression="^[0-5][1-9]{3}[0-9]$"></asp:RegularExpressionValidator>
                     <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="txtCodigoPostal" EnableClientScript="False" ErrorMessage="Longitud de 5 caracteres" OnServerValidate="CustomValidator2_ServerValidate" ValidationGroup="validForm"></asp:CustomValidator>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtCodigoPostal" EnableClientScript="False" ErrorMessage="Campo requerido"></asp:RequiredFieldValidator>
                 </div>
